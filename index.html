@@ -1,0 +1,3004 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SOLI — Official Music</title>
+
+<style>
+
+/* =========================
+   RESET
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#080808;
+    color:#f5f5f5;
+    font-family:Arial, Helvetica, sans-serif;
+    overflow-x:hidden;
+}
+
+button,
+a{
+    font-family:inherit;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+:root{
+    --orange:#ff6a00;
+    --black:#080808;
+    --graphite:#171717;
+    --silver:#c8c8c8;
+    --white:#f5f5f5;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+#intro{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+
+    background:#080808;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
+}
+
+#intro.hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+.intro-bg{
+    position:absolute;
+    inset:0;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.9),
+            rgba(0,0,0,.35),
+            rgba(0,0,0,.9)
+        ),
+        url("images/hero.jpg") center/cover no-repeat;
+
+    filter:grayscale(.25);
+    transform:scale(1.03);
+}
+
+.intro-content{
+    position:relative;
+    z-index:2;
+
+    text-align:center;
+}
+
+.intro-small{
+    color:var(--orange);
+    font-size:12px;
+    letter-spacing:7px;
+    margin-bottom:25px;
+}
+
+.intro-logo{
+    font-size:clamp(70px,15vw,190px);
+    font-weight:900;
+    letter-spacing:-8px;
+    line-height:.8;
+}
+
+.intro-logo span{
+    color:var(--orange);
+}
+
+.intro-genres{
+    margin-top:30px;
+    color:#aaa;
+    font-size:12px;
+    letter-spacing:4px;
+}
+
+.enter-btn{
+    margin-top:45px;
+
+    background:transparent;
+    color:white;
+
+    border:1px solid #555;
+
+    padding:15px 40px;
+
+    font-size:12px;
+    letter-spacing:4px;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.enter-btn:hover{
+    background:var(--orange);
+    border-color:var(--orange);
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+
+    height:80px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 5%;
+
+    z-index:100;
+
+    background:linear-gradient(
+        to bottom,
+        rgba(0,0,0,.9),
+        transparent
+    );
+}
+
+.nav-logo{
+    font-size:28px;
+    font-weight:900;
+    letter-spacing:-2px;
+}
+
+.nav-logo span{
+    color:var(--orange);
+}
+
+.nav-links{
+    display:flex;
+    gap:35px;
+}
+
+.nav-links a{
+    font-size:11px;
+    letter-spacing:2px;
+    color:#aaa;
+
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:var(--orange);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    align-items:flex-end;
+
+    padding:0 7% 100px;
+
+    position:relative;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(0,0,0,.95) 0%,
+            rgba(0,0,0,.55) 45%,
+            rgba(0,0,0,.15) 100%
+        ),
+        url("images/hero.jpg") center/cover no-repeat;
+}
+
+.hero-content{
+    max-width:850px;
+}
+
+.hero-label{
+    color:var(--orange);
+    font-size:12px;
+    letter-spacing:6px;
+    margin-bottom:20px;
+}
+
+.hero h1{
+    font-size:clamp(70px,13vw,180px);
+    line-height:.75;
+    letter-spacing:-9px;
+    font-weight:900;
+}
+
+.hero h1 span{
+    color:var(--orange);
+}
+
+.hero-description{
+    margin-top:35px;
+    max-width:500px;
+
+    color:#aaa;
+    font-size:14px;
+    line-height:1.8;
+}
+
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
+
+section{
+    padding:120px 7%;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+
+    margin-bottom:55px;
+}
+
+.section-label{
+    color:var(--orange);
+    font-size:10px;
+    letter-spacing:5px;
+    margin-bottom:12px;
+}
+
+.section-title{
+    font-size:clamp(45px,7vw,90px);
+    line-height:.8;
+    letter-spacing:-5px;
+}
+
+
+/* =========================
+   RELEASES
+========================= */
+
+.releases{
+    background:#0d0d0d;
+}
+
+.track-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:18px;
+}
+
+.track-card{
+    cursor:pointer;
+    position:relative;
+}
+
+.cover{
+    aspect-ratio:1/1;
+    overflow:hidden;
+    background:#151515;
+    position:relative;
+}
+
+.cover img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+
+    transition:
+        transform .6s ease,
+        filter .6s ease;
+}
+
+.track-card:hover .cover img{
+    transform:scale(1.07);
+    filter:brightness(.65);
+}
+
+.play-overlay{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    opacity:0;
+
+    transition:.3s;
+}
+
+.track-card:hover .play-overlay{
+    opacity:1;
+}
+
+.play-circle{
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    background:var(--orange);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:#000;
+    font-size:20px;
+}
+
+.track-info{
+    padding:20px 2px;
+}
+
+.track-title{
+    font-size:18px;
+    font-weight:bold;
+}
+
+.track-genre{
+    margin-top:7px;
+
+    color:#777;
+
+    font-size:10px;
+    letter-spacing:2px;
+}
+
+
+/* =========================
+   PLAYER
+========================= */
+
+.player-section{
+    background:#080808;
+}
+
+.player{
+    border:1px solid #292929;
+
+    padding:35px;
+
+    display:grid;
+    grid-template-columns:180px 1fr;
+
+    gap:35px;
+
+    background:#0e0e0e;
+}
+
+.player-cover{
+    width:180px;
+    aspect-ratio:1/1;
+    object-fit:cover;
+}
+
+.player-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.player-title{
+    font-size:42px;
+    font-weight:900;
+    letter-spacing:-2px;
+}
+
+.player-genre{
+    color:var(--orange);
+    font-size:10px;
+    letter-spacing:3px;
+    margin-top:8px;
+}
+
+.controls{
+    margin-top:35px;
+}
+
+.progress-area{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.time{
+    color:#777;
+    font-size:11px;
+    width:35px;
+}
+
+.progress{
+    flex:1;
+    height:4px;
+    background:#333;
+    cursor:pointer;
+    position:relative;
+}
+
+.progress-fill{
+    width:0%;
+    height:100%;
+    background:var(--orange);
+}
+
+.control-buttons{
+    display:flex;
+    align-items:center;
+    gap:15px;
+
+    margin-top:25px;
+}
+
+.control-btn{
+    width:42px;
+    height:42px;
+
+    border:1px solid #444;
+    background:transparent;
+
+    color:white;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.control-btn:hover{
+    border-color:var(--orange);
+    color:var(--orange);
+}
+
+.play-main{
+    width:55px;
+    height:55px;
+
+    border:none;
+
+    background:var(--orange);
+    color:#000;
+
+    font-size:18px;
+}
+
+.volume-box{
+    margin-left:auto;
+
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.volume{
+    width:100px;
+    accent-color:var(--orange);
+}
+
+
+/* =========================
+   VISUALIZER
+========================= */
+
+.visualizer{
+    height:50px;
+
+    display:flex;
+    align-items:end;
+    gap:4px;
+
+    margin-top:30px;
+}
+
+.bar{
+    width:5px;
+    height:10px;
+
+    background:var(--orange);
+
+    animation:equalize .8s ease-in-out infinite alternate;
+    animation-play-state:paused;
+}
+
+.visualizer.playing .bar{
+    animation-play-state:running;
+}
+
+.bar:nth-child(2){animation-delay:.1s}
+.bar:nth-child(3){animation-delay:.2s}
+.bar:nth-child(4){animation-delay:.3s}
+.bar:nth-child(5){animation-delay:.4s}
+.bar:nth-child(6){animation-delay:.15s}
+.bar:nth-child(7){animation-delay:.25s}
+.bar:nth-child(8){animation-delay:.35s}
+.bar:nth-child(9){animation-delay:.05s}
+.bar:nth-child(10){animation-delay:.3s}
+
+@keyframes equalize{
+    from{
+        height:7px;
+    }
+
+    to{
+        height:45px;
+    }
+}
+
+
+/* =========================
+   LYRICS
+========================= */
+
+.lyrics-section{
+    background:#0d0d0d;
+}
+
+.lyrics-box{
+    max-width:900px;
+
+    border-left:2px solid var(--orange);
+
+    padding-left:35px;
+}
+
+.lyrics-title{
+    color:var(--orange);
+
+    font-size:13px;
+    letter-spacing:3px;
+
+    margin-bottom:30px;
+}
+
+.lyrics-text{
+    white-space:pre-line;
+
+    color:#bdbdbd;
+
+    font-size:16px;
+    line-height:2;
+
+    min-height:300px;
+}
+
+
+/* =========================
+   SOCIAL
+========================= */
+
+.social-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    border-top:1px solid #292929;
+}
+
+.social-link{
+    padding:30px 10px;
+
+    border-right:1px solid #292929;
+    border-bottom:1px solid #292929;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    transition:.3s;
+}
+
+.social-link:hover{
+    background:var(--orange);
+    color:#000;
+}
+
+.social-name{
+    font-size:14px;
+    letter-spacing:2px;
+}
+
+.social-arrow{
+    font-size:20px;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:60px 7%;
+
+    border-top:1px solid #222;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.footer-logo{
+    font-size:35px;
+    font-weight:900;
+}
+
+.footer-logo span{
+    color:var(--orange);
+}
+
+footer p{
+    color:#555;
+    font-size:10px;
+    letter-spacing:2px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+    nav{
+        padding:0 5%;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        min-height:90vh;
+        padding:0 6% 70px;
+    }
+
+    .hero h1{
+        letter-spacing:-5px;
+    }
+
+    section{
+        padding:80px 6%;
+    }
+
+    .track-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:15px;
+    }
+
+    .player{
+        grid-template-columns:1fr;
+        padding:20px;
+    }
+
+    .player-cover{
+        width:100%;
+        max-width:350px;
+        margin:auto;
+    }
+
+    .player-title{
+        font-size:30px;
+    }
+
+    .volume-box{
+        margin-left:0;
+    }
+
+    .social-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:20px;
+        text-align:center;
+    }
+}
+
+
+@media(max-width:480px){
+
+    .intro-logo{
+        letter-spacing:-5px;
+    }
+
+    .track-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+    .lyrics-text{
+        font-size:14px;
+    }
+
+    .control-buttons{
+        flex-wrap:wrap;
+    }
+
+    .volume-box{
+        width:100%;
+    }
+
+    .volume{
+        flex:1;
+    }
+}
+.videos-section{
+    background:#080808;
+}
+
+.video-feature{
+    display:grid;
+    grid-template-columns:1.5fr .7fr;
+    gap:35px;
+    align-items:stretch;
+}
+
+.video-frame{
+    aspect-ratio:16/9;
+    background:#111;
+    overflow:hidden;
+    border:1px solid #292929;
+}
+
+.video-frame iframe{
+    width:100%;
+    height:100%;
+    border:0;
+}
+
+.video-info{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+
+    border-left:1px solid #292929;
+    padding:40px;
+}
+
+.video-info h3{
+    font-size:50px;
+    letter-spacing:-3px;
+    margin:10px 0 20px;
+}
+
+.video-info p{
+    color:#777;
+    line-height:1.8;
+    font-size:14px;
+}
+
+.video-button{
+    display:inline-block;
+    width:max-content;
+
+    margin-top:30px;
+    padding:15px 22px;
+
+    background:var(--orange);
+    color:#000;
+
+    font-size:10px;
+    font-weight:bold;
+    letter-spacing:2px;
+
+    transition:.3s;
+}
+
+.video-button:hover{
+    background:#fff;
+}
+
+
+@media(max-width:800px){
+
+    .video-feature{
+        grid-template-columns:1fr;
+    }
+
+    .video-info{
+        border-left:0;
+        border-top:1px solid #292929;
+        padding:30px 0;
+    }
+
+}
+/* =========================
+   CREDITS
+========================= */
+
+.credits-section{
+    background:#0b0b0b;
+    border-top:1px solid #222;
+    border-bottom:1px solid #222;
+}
+
+.credits-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    margin-top:50px;
+    border-top:1px solid #292929;
+    border-left:1px solid #292929;
+}
+
+.credit-item{
+    min-height:150px;
+    padding:30px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:12px;
+
+    border-right:1px solid #292929;
+    border-bottom:1px solid #292929;
+
+    transition:.3s;
+}
+
+.credit-item span{
+    color:#666;
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+.credit-item strong{
+    color:#f5f5f5;
+    font-size:18px;
+    letter-spacing:1px;
+}
+
+.credit-item:hover{
+    background:#111;
+}
+
+.credit-item:hover strong{
+    color:var(--orange);
+}
+
+@media(max-width:800px){
+
+    .credits-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .credits-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+/* =========================
+   DISCOGRAPHY
+========================= */
+
+.discography-section{
+    background:#080808;
+}
+
+.discography-list{
+    margin-top:45px;
+    border-top:1px solid #292929;
+}
+
+.discography-item{
+    min-height:105px;
+    display:grid;
+    grid-template-columns:80px 1fr 60px;
+    align-items:center;
+
+    border-bottom:1px solid #292929;
+
+    cursor:pointer;
+    transition:.3s;
+}
+
+.discography-item:hover{
+    background:#111;
+    padding-left:15px;
+}
+
+.track-number{
+    color:#555;
+    font-size:11px;
+    letter-spacing:2px;
+}
+
+.discography-name{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.discography-name strong{
+    color:#f5f5f5;
+    font-size:17px;
+    letter-spacing:1px;
+}
+
+.discography-name span{
+    color:#666;
+    font-size:9px;
+    letter-spacing:2px;
+}
+
+.discography-arrow{
+    color:var(--orange);
+    font-size:20px;
+    text-align:right;
+}
+
+@media(max-width:600px){
+
+    .discography-item{
+        grid-template-columns:50px 1fr 35px;
+        min-height:90px;
+    }
+
+    .discography-name strong{
+        font-size:14px;
+    }
+
+}
+/* =========================
+   VISUAL GALLERY
+========================= */
+
+.gallery-section{
+    background:#0b0b0b;
+    border-top:1px solid #222;
+}
+
+.gallery-grid{
+    margin-top:45px;
+
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:3px;
+}
+
+.gallery-item{
+    position:relative;
+    aspect-ratio:1/1;
+    overflow:hidden;
+    background:#111;
+}
+
+.gallery-item img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+
+    filter:grayscale(15%);
+    transition:
+        transform .7s ease,
+        filter .7s ease;
+}
+
+.gallery-overlay{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+
+    padding:30px;
+
+    background:
+        linear-gradient(
+            transparent 45%,
+            rgba(0,0,0,.9)
+        );
+
+    opacity:.85;
+    transition:.4s;
+}
+
+.gallery-overlay span{
+    color:var(--orange);
+    font-size:9px;
+    letter-spacing:2px;
+    margin-bottom:8px;
+}
+
+.gallery-overlay strong{
+    color:#fff;
+    font-size:18px;
+    letter-spacing:1px;
+}
+
+.gallery-item:hover img{
+    transform:scale(1.07);
+    filter:grayscale(0%);
+}
+
+.gallery-item:hover .gallery-overlay{
+    opacity:1;
+}
+
+@media(max-width:600px){
+
+    .gallery-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+/* =========================
+   AMBIENT BACKGROUND
+========================= */
+
+.ambient-bg{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    overflow:hidden;
+    pointer-events:none;
+    background:#080808;
+}
+
+.ambient-orb{
+    position:absolute;
+    width:420px;
+    height:420px;
+    border-radius:50%;
+    filter:blur(100px);
+    opacity:.12;
+    background:var(--orange);
+    animation:ambientMove 14s ease-in-out infinite alternate;
+}
+
+.orb-one{
+    top:-180px;
+    left:-120px;
+}
+
+.orb-two{
+    right:-180px;
+    top:35%;
+    animation-delay:-5s;
+}
+
+.orb-three{
+    left:30%;
+    bottom:-250px;
+    animation-delay:-9s;
+}
+
+@keyframes ambientMove{
+    from{
+        transform:translate(0,0) scale(1);
+    }
+    to{
+        transform:translate(80px,50px) scale(1.25);
+    }
+}
+.mobile-menu-btn{
+    display:none;
+    background:none;
+    border:0;
+    color:#fff;
+    font-size:25px;
+    cursor:pointer;
+}
+
+@media(max-width:800px){
+
+    .mobile-menu-btn{
+        display:block;
+        margin-left:auto;
+    }
+
+    nav a{
+        display:none;
+    }
+
+    nav.mobile-open a{
+        display:block;
+    }
+
+    nav.mobile-open{
+        flex-wrap:wrap;
+        gap:18px;
+    }
+
+}
+.back-top{
+    position:fixed;
+    right:25px;
+    bottom:25px;
+
+    width:45px;
+    height:45px;
+
+    border:1px solid var(--orange);
+    background:#080808;
+    color:var(--orange);
+
+    font-size:20px;
+    cursor:pointer;
+
+    z-index:50;
+
+    transition:.3s;
+}
+
+.back-top:hover{
+    background:var(--orange);
+    color:#000;
+}
+/* =========================
+   STREAMING
+========================= */
+
+.streaming-section{
+    background:#080808;
+    border-top:1px solid #222;
+}
+
+.streaming-grid{
+    margin-top:45px;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    border-top:1px solid #292929;
+    border-left:1px solid #292929;
+}
+
+.streaming-grid a{
+    min-height:120px;
+
+    padding:25px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    color:#f5f5f5;
+
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:2px;
+
+    border-right:1px solid #292929;
+    border-bottom:1px solid #292929;
+
+    transition:.3s;
+}
+
+.streaming-grid a span{
+    color:var(--orange);
+    font-size:20px;
+}
+
+.streaming-grid a:hover{
+    background:#111;
+    color:var(--orange);
+}
+
+@media(max-width:800px){
+
+    .streaming-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
+}
+
+@media(max-width:500px){
+
+    .streaming-grid{
+        grid-template-columns:1fr;
+    }
+
+}
+</style>
+</head>
+
+
+<body>
+    <!-- ANIMATED BACKGROUND -->
+<div class="ambient-bg">
+    <div class="ambient-orb orb-one"></div>
+    <div class="ambient-orb orb-two"></div>
+    <div class="ambient-orb orb-three"></div>
+</div>
+
+
+<!-- =========================
+     INTRO
+========================= -->
+
+<div id="intro">
+
+    <div class="intro-bg"></div>
+
+    <div class="intro-content">
+
+        <div class="intro-small">
+            OFFICIAL MUSIC
+        </div>
+
+        <div class="intro-logo">
+            SO<span>LI</span>
+        </div>
+
+        <div class="intro-genres">
+            RAP • R&B • TRAP • HIP-HOP
+        </div>
+
+        <button class="enter-btn" id="enterBtn">
+            ENTER
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     NAV
+========================= -->
+
+<nav>
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        ☰
+    </button>
+    <a href="#" class="nav-logo">
+        SO<span>LI</span>
+    </a>
+
+    <div class="nav-links">
+
+        <a href="#releases">
+            RELEASES
+        </a>
+
+        <a href="#player">
+            PLAYER
+        </a>
+
+        <a href="#lyrics">
+            LYRICS
+        </a>
+
+        <a href="#social">
+            SOCIAL
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<header class="hero">
+
+    <div class="hero-content">
+
+        <div class="hero-label">
+            ARTIST / RAPPER
+        </div>
+
+        <h1>
+            SO<span>LI</span>
+        </h1>
+
+        <p class="hero-description">
+            RAP • R&B • TRAP • HIP-HOP
+            <br>
+            Official music, releases, lyrics and more.
+        </p>
+
+    </div>
+
+</header>
+
+<!-- =========================
+     FEATURED RELEASE
+========================= -->
+
+<section class="featured-release">
+
+    <div class="featured-image">
+
+        <img
+            src="covers/Zahre-Cheshm.jpg"
+            alt="Zahre Cheshm"
+        >
+
+    </div>
+
+    <div class="featured-info">
+
+        <div class="section-label">
+            FEATURED RELEASE
+        </div>
+
+        <h2>
+            ZAHRE<br>
+            <span>CHESHM.</span>
+        </h2>
+
+        <p>
+            The latest sound from SOLI.
+            Press play and enter the world.
+        </p>
+
+        <button
+            class="featured-play"
+            onclick="loadTrack(0,true); document.getElementById('player').scrollIntoView({behavior:'smooth'});"
+        >
+            ▶ PLAY TRACK
+        </button>
+
+    </div>
+
+</section>
+
+<!-- =========================
+     RELEASES
+========================= -->
+
+<section class="releases" id="releases">
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="section-label">
+                LATEST MUSIC
+            </div>
+
+            <h2 class="section-title">
+                RELEASES.
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="track-grid">
+
+
+        <!-- TRACK 1 -->
+
+        <div class="track-card" data-track="0">
+
+            <div class="cover">
+
+                <img
+                    src="covers/Zahre-Cheshm.jpg"
+                    alt="Zahre Cheshm"
+                >
+
+                <div class="play-overlay">
+
+                    <div class="play-circle">
+                        ▶
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="track-info">
+
+                <div class="track-title">
+                    Zahre Cheshm
+                </div>
+
+                <div class="track-genre">
+                    RAP / DISS LOVE
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TRACK 2 -->
+
+        <div class="track-card" data-track="1">
+
+            <div class="cover">
+
+                <img
+                    src="covers/Hese-Shishom.jpg"
+                    alt="Hese Shishom"
+                >
+
+                <div class="play-overlay">
+
+                    <div class="play-circle">
+                        ▶
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="track-info">
+
+                <div class="track-title">
+                    Hese Shishom
+                </div>
+
+                <div class="track-genre">
+                    RAP / EMOTIONAL
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TRACK 3 -->
+
+        <div class="track-card" data-track="2">
+
+            <div class="cover">
+
+                <img
+                    src="covers/Bi-Vojdan.jpg"
+                    alt="Bi Vojdan"
+                >
+
+                <div class="play-overlay">
+
+                    <div class="play-circle">
+                        ▶
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="track-info">
+
+                <div class="track-title">
+                    Bi Vojdan
+                </div>
+
+                <div class="track-genre">
+                    RAP / DISS LOVE
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- TRACK 4 -->
+
+        <div class="track-card" data-track="3">
+
+            <div class="cover">
+
+                <img
+                    src="covers/Sar-Be-Nist.jpg"
+                    alt="Sar Be Nist"
+                >
+
+                <div class="play-overlay">
+
+                    <div class="play-circle">
+                        ▶
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="track-info">
+
+                <div class="track-title">
+                    Sar Be Nist
+                </div>
+
+                <div class="track-genre">
+                    RAP / EMOTIONAL
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+<!-- =========================
+     MUSIC VIDEOS
+========================= -->
+
+<section class="videos-section" id="videos">
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="section-label">
+                VISUALS
+            </div>
+
+            <h2 class="section-title">
+                MUSIC VIDEOS.
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="video-feature">
+
+        <div class="video-frame">
+
+            <iframe
+                src="https://www.youtube.com/embed/"
+                title="SOLI Music Video"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+
+        <div class="video-info">
+
+            <div class="section-label">
+                OFFICIAL VIDEO
+            </div>
+
+            <h3>
+                SOLI
+            </h3>
+
+            <p>
+                Official music videos, visuals and cinematic projects by SOLI.
+            </p>
+
+            <a
+                href="https://www.youtube.com/@SOLI-rap"
+                target="_blank"
+                class="video-button"
+            >
+                WATCH ON YOUTUBE ↗
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================
+     CREDITS
+========================= -->
+
+<section class="credits-section" id="credits">
+
+    <div class="section-label">
+        PRODUCTION
+    </div>
+
+    <h2 class="section-title">
+        CREDITS.
+    </h2>
+
+    <div class="credits-grid">
+
+        <div class="credit-item">
+            <span>ARTIST</span>
+            <strong>SOLI</strong>
+        </div>
+
+        <div class="credit-item">
+            <span>PRODUCER</span>
+            <strong>ARSH</strong>
+        </div>
+
+        <div class="credit-item">
+            <span>MIX & MASTER</span>
+            <strong>ARSH</strong>
+        </div>
+
+        <div class="credit-item">
+            <span>GUITAR</span>
+            <strong>MANI</strong>
+        </div>
+
+        <div class="credit-item">
+            <span>COVER ART</span>
+            <strong>SOLI</strong>
+        </div>
+
+        <div class="credit-item">
+            <span>VISUALIZER</span>
+            <strong>ARSH</strong>
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================
+     DISCOGRAPHY
+========================= -->
+
+<section class="discography-section" id="discography">
+
+    <div class="section-label">
+        ALL RELEASES
+    </div>
+
+    <h2 class="section-title">
+        DISCOGRAPHY.
+    </h2>
+
+    <div class="discography-list">
+
+        <div class="discography-item" onclick="loadTrack(0,true); document.getElementById('player').scrollIntoView({behavior:'smooth'});">
+            <span class="track-number">01</span>
+            <div class="discography-name">
+                <strong>ZAHRE CHESHM</strong>
+                <span>RAP / DISS LOVE</span>
+            </div>
+            <span class="discography-arrow">↗</span>
+        </div>
+
+        <div class="discography-item" onclick="loadTrack(1,true); document.getElementById('player').scrollIntoView({behavior:'smooth'});">
+            <span class="track-number">02</span>
+            <div class="discography-name">
+                <strong>HESE SHISHOM</strong>
+                <span>RAP / DISS LOVE</span>
+            </div>
+            <span class="discography-arrow">↗</span>
+        </div>
+
+        <div class="discography-item" onclick="loadTrack(2,true); document.getElementById('player').scrollIntoView({behavior:'smooth'});">
+            <span class="track-number">03</span>
+            <div class="discography-name">
+                <strong>BI VOJDAN</strong>
+                <span>RAP / DISS LOVE</span>
+            </div>
+            <span class="discography-arrow">↗</span>
+        </div>
+
+        <div class="discography-item" onclick="loadTrack(3,true); document.getElementById('player').scrollIntoView({behavior:'smooth'});">
+            <span class="track-number">04</span>
+            <div class="discography-name">
+                <strong>SAR BE NIST</strong>
+                <span>RAP / DISS LOVE</span>
+            </div>
+            <span class="discography-arrow">↗</span>
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================
+     VISUAL GALLERY
+========================= -->
+
+<section class="gallery-section" id="visuals">
+
+    <div class="section-label">
+        VISUAL ARCHIVE
+    </div>
+
+    <h2 class="section-title">
+        VISUALS.
+    </h2>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-item">
+            <img src="covers/Zahre-Cheshm.jpg" alt="Zahre Cheshm">
+            <div class="gallery-overlay">
+                <span>01</span>
+                <strong>ZAHRE CHESHM</strong>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="covers/Hese-Shishom.jpg" alt="Hese Shishom">
+            <div class="gallery-overlay">
+                <span>02</span>
+                <strong>HESE SHISHOM</strong>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="covers/Bi-Vojdan.jpg" alt="Bi Vojdan">
+            <div class="gallery-overlay">
+                <span>03</span>
+                <strong>BI VOJDAN</strong>
+            </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="covers/Sar-Be-Nist.jpg" alt="Sar Be Nist">
+            <div class="gallery-overlay">
+                <span>04</span>
+                <strong>SAR BE NIST</strong>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+<!-- =========================
+     PLAYER
+========================= -->
+
+<section class="player-section" id="player">
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="section-label">
+                MUSIC PLAYER
+            </div>
+
+            <h2 class="section-title">
+                LISTEN.
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="player">
+
+        <img
+            id="playerCover"
+            class="player-cover"
+            src="covers/Zahre-Cheshm.jpg"
+            alt="Current Track"
+        >
+
+
+        <div class="player-info">
+
+            <div
+                id="playerTitle"
+                class="player-title"
+            >
+                Zahre Cheshm
+            </div>
+
+            <div
+                id="playerGenre"
+                class="player-genre"
+            >
+                RAP / DISS LOVE
+            </div>
+
+
+            <div class="visualizer" id="visualizer">
+
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+
+            </div>
+
+
+            <div class="controls">
+
+                <div class="progress-area">
+
+                    <span
+                        class="time"
+                        id="currentTime"
+                    >
+                        0:00
+                    </span>
+
+                    <div
+                        class="progress"
+                        id="progress"
+                    >
+
+                        <div
+                            class="progress-fill"
+                            id="progressFill"
+                        ></div>
+
+                    </div>
+
+                    <span
+                        class="time"
+                        id="duration"
+                    >
+                        0:00
+                    </span>
+
+                </div>
+
+
+                <div class="control-buttons">
+
+                    <button
+                        class="control-btn"
+                        id="prevBtn"
+                    >
+                        ‹‹
+                    </button>
+
+                    <button
+                        class="control-btn play-main"
+                        id="playBtn"
+                    >
+                        ▶
+                    </button>
+
+                    <button
+                        class="control-btn"
+                        id="nextBtn"
+                    >
+                        ››
+                    </button>
+
+
+                    <div class="volume-box">
+
+                        <span>
+                            🔊
+                        </span>
+
+                        <input
+                            type="range"
+                            class="volume"
+                            id="volume"
+                            min="0"
+                            max="1"
+                            step="0.01"
+                            value="1"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     LYRICS
+========================= -->
+
+<section class="lyrics-section" id="lyrics">
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="section-label">
+                WORDS
+            </div>
+
+            <h2 class="section-title">
+                LYRICS.
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="lyrics-box">
+
+        <div
+            class="lyrics-title"
+            id="lyricsTitle"
+        >
+            ZAHRE CHESHM
+        </div>
+
+        <div
+            class="lyrics-text"
+            id="lyricsText"
+        >
+            Select a track to view lyrics.
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SOCIAL
+========================= -->
+
+<section class="social-section" id="social">
+
+    <div class="section-head">
+
+        <div>
+
+            <div class="section-label">
+                FIND SOLI
+            </div>
+
+            <h2 class="section-title">
+                FOLLOW.
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="social-grid">
+
+        <a
+            class="social-link"
+            href="https://www.instagram.com/soli.audio?stkn=MXI4ZjVocmYxamlwZg"
+            target="_blank"
+        >
+
+            <div class="social-name">
+                Instagram
+            </div>
+
+            <div class="social-arrow">
+                ↗
+            </div>
+
+        </a>
+
+
+        <a
+            class="social-link"
+            href="https://www.youtube.com/@SOLI-rap"target="_blank"
+            >
+        
+                <div class="social-name">
+                    YouTube
+                </div>
+        
+                <div class="social-arrow">
+                    ↗
+                </div>
+        
+            </a>
+        
+        
+            <a
+                class="social-link"
+                href="https://on.soundcloud.com/yJxHQFzWU3m2VUFw8"
+                target="_blank"
+            >
+        
+                <div class="social-name">
+                    SoundCloud
+                </div>
+        
+                <div class="social-arrow">
+                    ↗
+                </div>
+        
+            </a>
+        
+        
+            <a
+                class="social-link"
+                href="https://t.me/solistorm"
+                target="_blank"
+            >
+        
+                <div class="social-name">
+                    Telegram
+                </div>
+        
+                <div class="social-arrow">
+                    ↗
+                </div>
+        
+            </a>
+        
+        </div>
+        
+        </section>
+        <!-- =========================
+     STREAMING
+========================= -->
+
+<section class="streaming-section">
+
+    <div class="section-label">
+        FIND SOLI
+    </div>
+
+    <h2 class="section-title">
+        STREAM.
+    </h2>
+
+    <div class="streaming-grid">
+
+        <a
+            href="https://www.youtube.com/@SOLI-rap"
+            target="_blank"
+        >
+            YOUTUBE
+            <span>↗</span>
+        </a>
+
+        <a
+            href="https://on.soundcloud.com/yJxHQFzWU3m2VUFw8"
+            target="_blank"
+        >
+            SOUNDCLOUD
+            <span>↗</span>
+        </a>
+
+        <a
+            href="https://www.instagram.com/soli.audio?stkn=MXI4ZjVocmYxamlwZg"
+            target="_blank"
+        >
+            INSTAGRAM
+            <span>↗</span>
+        </a>
+
+        <a
+            href="https://t.me/solistorm"
+            target="_blank"
+        >
+            TELEGRAM
+            <span>↗</span>
+        </a>
+
+    </div>
+
+</section>
+        
+        <!-- =========================
+             FOOTER
+        ========================= -->
+        
+        <footer>
+        
+            <div class="footer-logo">
+                SO<span>LI</span>
+            </div>
+        
+            <p>
+                © 2026 SOLI — OFFICIAL MUSIC
+            </p>
+        
+        </footer>
+        
+        
+        <!-- =========================
+             AUDIO
+        ========================= -->
+        
+        <audio
+            id="audio"
+            preload="metadata"
+        ></audio>
+        
+        
+        <!-- =========================
+             JAVASCRIPT
+        ========================= -->
+        
+        <script>
+        
+        /* =========================
+           TRACK DATABASE
+        ========================= */
+        
+        const tracks = [
+        
+            {
+                title: "Zahre Cheshm",
+                genre: "RAP / DISS LOVE",
+                cover: "covers/Zahre-Cheshm.jpg",
+                audio: "music/Zahre-Cheshm.mp3",
+        
+                lyrics: `ورس 1:
+
+شیشه ها شکستن جمعم شه مثه قبل نمیشه کلش
+تاریخ رفتنت رسید موئد
+من فقط بت شک داشتم
+تو داشتی هزار تا مورد
+یادم نمیره حتی برسه سنم بشه مسن
+همه اتیشا از گوره توعه
+بکن از ذهنم گورتو گمه
+مودتو ثوبات نداره ولی یادت نره دوست داشتم یه موقع
+
+چرا یهو رنگت پرید
+چیشد ترسیدی سریع
+روانیه دائم المریض
+تو که کارات اکته چه خوب کردی صحنه زنی
+خوب خودتو به نفهمی زدی
+
+ورداشتی جلو تر از گلیمت پاتو جوری
+دنباله فرصتی حرفاتو کنی لاپوشونی
+کی بوس میذاشت جا رو پیشونیت
+دوسم نداری رو مخمی تاروپودی
+
+ساری حفظم دیگه نقشتو
+بازی نکن واسم داری نقشه تو
+ساکتی در نمیاد جیکت میاد اشکتو
+برگردیم بگی دوست دارم ولی دیگه خفشو
+بسه دیگه بم نده شوک
+از دستت خسته شد
+بم نده شوک بم نده شوک بم نده شوک
+
+کورس 1:
+
+دلم واست سوخت نموندی پای من
+سینم سوخت با تلخی الکل لوز داده قلب
+نمونده بوت یاده من
+نمیخواستیم روشن بود مثه روز واسه من
+
+نگو بم اشکات اشکه شوقه
+تو من کور شد دیگه رفته ذوقت
+زهر چشم گرفتم ازت به موقع
+
+ورس 2:
+
+دیگه تورو دوست ندارم حتی یه یدونه نه
+گفتی نه باهم میتونیم نه بدون هم
+تو که گفتی نمیری به جون من
+برو  به سلامت دیگه نباش دل جوعه من
+
+به چیت مینازی
+به اینکه بچی ندارم به هیچیت نیازی
+دیگه فکرم بت نمیره تو این داستان تو مگه سر و ته پیازی
+تهشم یه روزی به هیچکی به جز خودم میبازی
+
+انقد ویدیو از خودت میزاری حرصم دراری
+خودت کردی از حسم فراری
+یه دریا بت عشق دادم با اینکه میدونستم تهش سرابی
+پر و بال دادم بت حالا یه جور زدی بم پرام ریخت
+
+یه رو صفر میشه نوار قلبم
+اویزونی برا اونم شدی وبال گردن
+رو دادم بت رو خودم سوارت کردم
+نکنه دیگه دلت هوای برگشت
+
+وا نکردی رو رابطه یه ذره چشم
+تهشم گرفتیم از هم زهر چشم
+
+کورس 2:
+
+دلم واست سوخت نموندی پای من
+ریم سوخت با تلخی الکل لوز داده قلب
+نمونده بوت یاده من
+نمیخواستیم روشن بود مثه روز واسه من`
+            },
+        
+        
+            {
+                title: "Hese Shishom",
+                genre: "RAP / EMOTIONAL",
+                cover: "covers/Hese-Shishom.jpg",
+                audio: "music/Hese-Shishom.mp3",
+        
+                lyrics: `ورس 1:
+
+چند روزه میبینمت تو خوابه ماتم
+چند روزه گرفته ای یه حاله ماتم
+چشامو کور کردی تاره ماهم
+دارم تاره موتم دی ان ای خاطراتن
+محوه پاره عطره بوتم شدی زیبا ترین نوتم
+برگرد به خاطراتم
+برگرد به خاطره من
+همیشه به خاطرتم
+کردم هرکاری که نداشت قابلتم
+الان شدیم دو تا عابر سرد
+تو شدی عامله زخم
+
+بود کم از تو
+که داشتم بت نیاز توجه
+اینکه هرشب با فکرام نزنم توهم
+اینکه هستی و نیستی پیشم رد میشی میکنی تو ذهنم تردد
+کاش کنم زمانو توقف
+داشتی بیشتر از همه توقع
+دیگه نمیکنمت تنفس
+هرشب نمیشه نکنمت تصور
+دختر گاییدی رفتی کردی فکرمو تصرف
+زدم یه استوری برات تشکر
+این حس جوری بگا میده منو انگا کردم تشنج
+
+کورس 1:
+
+خواستی بری بم زد یه حسه شیشم
+بینمون اون همه حسه چیشد
+واسه اون چشت میمرد
+واسه اون چشت میمردش
+الان شدی تنها بچ
+کشیدی پایین از طنابه
+میلرزیدی مثه بید صبح
+شدی ته قصه بی ذوق
+تورو میلت کی برد
+
+ورس 2:
+
+واسه برگشتنت چقد کردم التماس
+زیر چشات کبوده پلکاتم کرده التهاب
+چقد کشیدم هر رو واسه تو هم اضطراب
+وقتی باهامی یادم میره تنهام تو انزوا
+تو قول دادی هرچی باشه پیشمی تا انتها
+پاچید همه چی بیخیال پریدم از ارتفاع
+بودی واسم اضطرار
+تو فرق داری برام حتی پیدا میکنمت اگه باشی توی ازدهام
+
+وانمود کردم ازت رد شدم
+فکرت هر شب از روم رد میشه
+کاری کردی که بعد ردی شه
+پیشتم نذاشتی از خودت ردی که
+خاطراتت بگام میده هر تیکه
+جوزی بودنام سرتو عصبیه هر تیکه
+بعد من با سه نفر دیگه رفتی این بازیه هتریکه
+
+میکرد بام بحث تا میشد هرچی
+گفتی پسر خوبی بودی واسم تو تکی
+رفتیو گذاشتیم تنها تکی
+الان حالی هم عقبت میره تا ته کیر
+منکه غرورمو سرت کردم تحقیر
+حتی ولت کردم فکرت نکنه تعقیب
+کنارم بود پلمپ داده نشتی
+توکه چشات از نبودنم میشد اشکی
+
+کورس 2:
+
+خواستی بری بم زد یه حسه شیشم
+بینمون اون همه حسه چیشد
+واسه اون چشت میمرد
+واسه اون چشت میمردش
+الان شدی تنها بچ
+کشیدی پایین از طنابه
+میلرزیدی مثه بید صبح
+شدی ته قصه بی ذوق
+تورو میلت کی برد
+
+ورس 3:
+
+ازت اتو شده بود بم دستگیر
+بچی اگه جرم بود میشدی توهم دستگیر
+حرفامو گرفته بودی نشنید
+صدات زدم کلی خودش نخواست نشنید`
+            },
+        
+        
+            {
+                title: "Bi Vojdan",
+                genre: "RAP / DISS LOVE",
+                cover: "covers/Bi-Vojdan.jpg",
+                audio: "music/Bi-Vojdan.mp3",
+        
+                lyrics: `ورس 1:
+
+دو سه روزه خون سردی
+قلبو که خرد کردی
+دلمو که خون کردی
+حسمو کور کردی
+شدم سرت مود ردی
+
+بازم که دختر بیداری
+منو، تو جز عذاب بهم دیگه چی دادیم
+میکردی سرم اون همه گریه هی زاری
+اون همه گفتی دوست دارم واس چی حالا ازم بیزاری
+رفتی و کلی چرا ، داری منت سرم میزاری
+
+اگه نشد بعدت ماه دیگه کامل
+واسه اینه اب زیر کاهه
+دیر فهمیده بودم تو استینه ماره
+خاطرات مثله یه طنابه داره
+
+بم بدی کردی عوضه خوبی
+عوضی بودی عوض شدی در عرض یه چشم بهم زدن
+
+اونکه یه بند بنده تو بود
+نمیومد بند که بارون
+پاره شد بند بنده وجودم
+بازم لنگه تو موند
+رابطه به یه مو بند بود
+رفیقات دادن بت دنده دروغ
+
+حرفات بود بی جا
+خیانت کردی ، کردی بیجا
+برنگرد دیگه واست نی جا
+بین بغلت ترجیحم هیچ جاس
+بچه الان برگشتتو میخوام چیکار
+اون موقع که باید نموندی منو شبا فکرت گذاشت بیدار
+
+کردی سهله انگاری
+که حالت خوب نی
+واست رابطه سخته انگاری
+بارونه سیله اشکام سهمت احساسی
+منم باور کردم برمیگردی ولی بود نقشه انگاری
+دلتو زدم برات شدم هر دفعه تکراری
+هرچقد حرف زدم گفتی نکن سخته اجباری
+
+کورس1:
+
+الان فکرم بت ناخوداگاهه
+حالیت نشد هرچی کردم بت ثابت
+دیگه زدی بی گدار به اب
+راحت شدی بی وجدان بخواب
+ماهم یه شب نشد بی گمان بتاب
+رفتم چون بودم بی گناه بگا
+
+ورس 2:
+
+باید یجا میگرفتم میکردمت گوش مالی
+الان خیانت کردی تهشم خوشحالی
+توی ترکام ثابت کردم به همه
+توی عوضی نداری وجدانی
+
+اگه نموند مایی
+شاید اگه حسم اقیانوس بود میموندی توش ماهی
+اگه بعدت دیگه شبام نداره ماهی
+حالم بعدت بود تو خودم دو ماهی
+
+انقد رو دادم بت ور داشت باد سرت
+من برعکس اون نمیزدم داد سرت
+ببین این اشکامو دیدی از یاد نره
+منکه وجودتو میکردم دم و بازدمه
+الان خاطراتت تو ذهنم پاز زده
+کاری که بام کردیو میاد یه روز باز سرت
+
+رفتی انقد گشتم دنباله دلیل
+حرصی شدم ازت جلی
+بودی فیک جعلی
+رابطرو چشم زدی
+بچه بودی مودی هی سگی
+جامو پر کردی انقد سریع
+منو کشوندی به بیراهه فرعی
+دادیمم فریب
+من نمیخواستم تو یهو شدی رفتنی
+کاش مثه دفعه قبل میذاشتی یه راهی
+
+کورس 2:
+
+الان فکرم بت ناخوداگاهه
+حالیت نشد هرچی کردم بت ثابت
+دیگه زدی بی گدار به اب
+راحت شدی بی وجدان بخواب
+ماهم یه شب نشد بی گمان بتاب
+رفتم چون بودم بی گناه بگا`
+            },
+        
+        
+            {
+                title: "Sar Be Nist",
+                genre: "RAP / EMOTIONAL",
+                cover: "covers/Sar-Be-Nist.jpg",
+                audio: "music/Sar-Be-Nist.mp3",
+        
+                lyrics: `ورس 1:
+
+خاطراتمونو کردی سر به نیست
+کاش همه چیشو از سر بگیریم
+توکه هیچی سرت نیس
+بگا رفتیم سره چی
+میکشه هعی سره تیر
+بکش یه سره جیغ
+رفتنت داشت دلخراش ترین صحنه ای
+
+الان دیگه باهاشون پس بشین
+سلی دیگه ازت دست کشید
+از دستت بس کشید
+ولی حواست باشه کسی جز من روت دست کشید
+بدون به نفعشی
+رسمش نیس
+بگاش بدی و هرزه شی
+
+میدونستی کلی دوست دارم
+دراوردی کولی بازی
+میگفتی همه حرفاتو به شوخی جدی کلی
+که جوری شدی الان به مردنم راضی
+به کشتنم دادی
+
+بودی یه دوره با همه
+فک میکنی برمیگردم
+دلت خوشه میشه باورت
+حسمو سر به نیست کردی قلبت از اهنه
+
+حتی حرفام بارت نی دیگه
+نبیخشدمت چون اولین بارت نی دیگه
+حتی اشکام بارید برگرد داره دیر میشه
+چشام میزنه دوسو دور شدی مثه مه و باد نی دیده
+تهش حسه هاده میمیره
+
+تو که میترسیدی من برم میترکید ذهلت که
+گرفتم از زهرت چشم
+گذاشتی بودنت واسم حسرت شه
+میکشیدی جیغه بنفش هعی
+پشته هم
+
+میگیرم سرت پیری زود رس
+چون هرجا میخوای میری خونسرد
+هر بار نیازت داشتم میری دور رس
+من واست میمیردم تو نداشتی دوستم
+برو میری زودتر
+شدم شوک سوختم
+
+حتی کورشم من
+خاطراتو دیگه نمیبینم کوشن پ
+واقعا کشندس
+نبودی اونشب نه
+ببینی مغزم هزار بار رو شک رفت
+همه چیمون شد مثه موشک پر
+من که نمیخواستم بیاد رو گونت اشک
+
+گذاشتی قالش
+خواستی از سرت کم شه شرش
+با دوتا دوست دارم کردی خامش بده
+الان فقط دیگه تو عکسو قابش
+میبینتت میخواد از یادش نره
+بگو که همه اینا خوابه
+بگا رفت سر اینکه رابطرو پیشه رفیقاش جارش زده
+
+هربار نیاوردی یه دلیله منطقی
+دوست داشتم کردی حسمو سر به نیست
+تا اومدم دوست داشته باشم یهو قصمون سر رسید
+میکردی گریه سرم حالا ماتم بگیر و بس بشین
+ادا اطفالت دیگه واسم بسه جیغ
+بکش از این رفتارت دست بچی
+تهش که چی
+اشک بریز
+بغضه نترکید رسید به خفگی`
+            }
+        
+        ];
+        
+        
+        /* =========================
+           ELEMENTS
+        ========================= */
+        
+        const audio =
+            document.getElementById("audio");
+        
+        const playerCover =
+            document.getElementById("playerCover");
+        
+        const playerTitle =
+            document.getElementById("playerTitle");
+        
+        const playerGenre =
+            document.getElementById("playerGenre");
+        
+        const lyricsTitle =
+            document.getElementById("lyricsTitle");
+        
+        const lyricsText =
+            document.getElementById("lyricsText");
+        
+        const visualizer =
+            document.getElementById("visualizer");
+        
+        const progress =
+            document.getElementById("progress");
+        
+        const progressFill =
+            document.getElementById("progressFill");
+        
+        const currentTime =
+            document.getElementById("currentTime");
+        
+        const duration =
+            document.getElementById("duration");
+        
+        const playBtn =
+            document.getElementById("playBtn");
+        
+        const prevBtn =
+            document.getElementById("prevBtn");
+        
+        const nextBtn =
+            document.getElementById("nextBtn");
+        
+        const volume =
+            document.getElementById("volume");
+        
+        const intro =
+            document.getElementById("intro");
+        
+        const enterBtn =
+            document.getElementById("enterBtn");
+        
+        
+        /* =========================
+           CURRENT TRACK
+        ========================= */
+        
+        let currentTrack = 0;
+        
+        
+        /* =========================
+           TIME FORMAT
+        ========================= */
+        
+        function formatTime(seconds){
+        
+            if(!isFinite(seconds)){
+                return "0:00";
+            }
+        
+            const minutes =
+                Math.floor(seconds / 60);
+        
+            const secs =
+                Math.floor(seconds % 60)
+                .toString()
+                .padStart(2, "0");
+        
+            return `${minutes}:${secs}`;
+        }
+        
+        
+        /* =========================
+           LOAD TRACK
+        ========================= */
+        
+        function loadTrack(index, autoplay = false){
+        
+            if(index < 0){
+                index = tracks.length - 1;
+            }
+        
+            if(index >= tracks.length){
+                index = 0;
+            }
+        
+            currentTrack = index;
+        
+            const track =
+                tracks[currentTrack];
+        
+        
+            audio.pause();
+        
+            audio.src =
+                track.audio;
+        
+            audio.load();
+        
+        
+            playerCover.src =
+                track.cover;
+        
+            playerTitle.textContent =
+        track.title;
+
+    playerGenre.textContent =
+        track.genre;
+
+
+    lyricsTitle.textContent =
+        track.title.toUpperCase();
+
+    lyricsText.textContent =
+        track.lyrics;
+
+
+    progressFill.style.width =
+        "0%";
+
+    currentTime.textContent =
+        "0:00";
+
+    duration.textContent =
+        "0:00";
+
+    playBtn.textContent =
+        "▶";
+
+    visualizer.classList.remove(
+        "playing"
+    );
+
+
+    if(autoplay){
+
+        audio.play()
+            .then(() => {
+
+                updatePlayState();
+
+            })
+            .catch(() => {});
+
+    }
+
+}
+
+
+/* =========================
+   PLAY / PAUSE
+========================= */
+
+function togglePlay(){
+
+    if(audio.paused){
+
+        audio.play()
+            .then(() => {
+
+                updatePlayState();
+
+            })
+            .catch(() => {});
+
+    }else{
+
+        audio.pause();
+
+        updatePlayState();
+
+    }
+
+}
+
+
+/* =========================
+   PLAY STATE
+========================= */
+
+function updatePlayState(){
+
+    if(audio.paused){
+
+        playBtn.textContent =
+            "▶";
+
+        visualizer.classList.remove(
+            "playing"
+        );
+
+    }else{
+
+        playBtn.textContent =
+            "Ⅱ";
+
+        visualizer.classList.add(
+            "playing"
+        );
+
+    }
+
+}
+
+
+/* =========================
+   NEXT TRACK
+========================= */
+
+function nextTrack(){
+
+    loadTrack(
+        currentTrack + 1,
+        true
+    );
+
+}
+
+
+/* =========================
+   PREVIOUS TRACK
+========================= */
+
+function previousTrack(){
+
+    loadTrack(
+        currentTrack - 1,
+        true
+    );
+
+}
+
+
+/* =========================
+   AUDIO EVENTS
+========================= */
+
+audio.addEventListener(
+    "play",
+    updatePlayState
+);
+
+audio.addEventListener(
+    "pause",
+    updatePlayState
+);
+
+
+audio.addEventListener(
+    "loadedmetadata",
+    () => {
+
+        duration.textContent =
+            formatTime(
+                audio.duration
+            );
+
+    }
+);
+
+
+audio.addEventListener(
+    "timeupdate",
+    () => {
+
+        if(audio.duration){
+
+            const percentage =
+                (
+                    audio.currentTime /
+                    audio.duration
+                ) * 100;
+
+            progressFill.style.width =
+                percentage + "%";
+
+        }
+
+        currentTime.textContent =
+            formatTime(
+                audio.currentTime
+            );
+
+    }
+);
+
+
+/* =========================
+   AUTO NEXT
+========================= */
+
+audio.addEventListener(
+    "ended",
+    () => {
+
+        nextTrack();
+
+    }
+);
+
+
+/* =========================
+   PROGRESS BAR
+========================= */
+
+progress.addEventListener(
+    "click",
+    (event) => {
+
+        if(!audio.duration){
+            return;
+        }
+
+        const rect =
+            progress.getBoundingClientRect();
+
+        const percent =
+            (
+                event.clientX -
+                rect.left
+            ) / rect.width;
+
+        audio.currentTime =
+            percent * audio.duration;
+
+    }
+);
+
+
+/* =========================
+   VOLUME
+========================= */
+
+volume.addEventListener(
+    "input",
+    () => {
+
+        audio.volume =
+            volume.value;
+
+    }
+);
+
+
+/* =========================
+   PLAYER BUTTONS
+========================= */
+
+playBtn.addEventListener(
+    "click",
+    togglePlay
+);
+
+nextBtn.addEventListener(
+    "click",
+    nextTrack
+);
+
+prevBtn.addEventListener(
+    "click",
+    previousTrack
+);
+
+
+/* =========================
+   TRACK CARDS
+========================= */
+
+document
+    .querySelectorAll(".track-card")
+    .forEach(card => {
+
+        card.addEventListener(
+            "click",
+            () => {
+
+                const index =
+                    Number(
+                        card.dataset.track
+                    );
+
+                loadTrack(
+                    index,
+                    true
+                );
+
+                document
+                    .getElementById("player")
+                    .scrollIntoView({
+                        behavior: "smooth"});
+
+}
+);
+
+});
+
+
+/* =========================
+INTRO BUTTON
+========================= */
+
+enterBtn.addEventListener(
+"click",
+() => {
+
+intro.classList.add(
+"hidden"
+);
+
+document.body.style.overflow =
+"auto";
+
+}
+);
+
+
+/* =========================
+KEYBOARD
+========================= */
+
+document.addEventListener(
+"keydown",
+(event) => {
+
+if(event.code === "Space"){
+
+event.preventDefault();
+
+togglePlay();
+
+}
+
+if(event.code === "ArrowRight"){
+
+nextTrack();
+
+}
+
+if(event.code === "ArrowLeft"){
+
+previousTrack();
+
+}
+
+}
+);
+
+
+/* =========================
+INITIAL LOAD
+========================= */
+
+loadTrack(
+0,
+false
+);
+
+audio.volume = 1;
+
+document.body.style.overflow =
+"hidden";
+function toggleMobileMenu(){
+
+const nav = document.querySelector("nav");
+
+if(nav){
+    nav.classList.toggle("mobile-open");
+}
+
+}
+</script>
+<button
+    class="back-top"
+    onclick="window.scrollTo({top:0, behavior:'smooth'})"
+    aria-label="Back to top"
+>
+    ↑
+</button>
+</body>
+</html>
